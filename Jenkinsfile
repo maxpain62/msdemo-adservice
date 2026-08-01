@@ -3,5 +3,20 @@ podTemplate(yaml: readTrusted('pod.yaml')) {
         stage('Checkout') {
             git branch: 'main', url: 'https://github.com/maxpain62/msdemo-adservice.git'
         }
+        stage('Build Docker Image') {
+            container('docker') {
+                sh """
+                    ls -l && ls -l target/
+                    buildctl --addr tcp://buildkitd.devops-tools.svc.cluster.local:1234\
+                    --tlscacert /certs/ca.pem\
+                    --tlscert /certs/cert.pem\
+                    --tlskey /certs/key.pem\
+                    build --frontend dockerfile.v0\
+                    --opt filename=Dockerfile --local context=.\
+                    --local dockerfile=.\
+                    --output type=image,name=134448505602.dkr.ecr.ap-south-1.amazonaws.com/msdemo-adservice,push=true
+                """
+            }
+        }
     }
 }
