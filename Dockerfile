@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Define a default value so it's not empty if the builder fails to provide it
-FROM eclipse-temurin:24.0.2_12-jdk-noble@ AS builder
+FROM eclipse-temurin:24.0.2_12-jdk-noble AS builder
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ RUN ./gradlew downloadRepos
 
 RUN ./gradlew installDist
 
-FROM eclipse-temurin:25.0.3_9-jre-alpine@sha256:28db6fdf60e38945e43d840c0333aeaec66c15943070104f7586fd3c9d1665b0
+FROM eclipse-temurin:25.0.3_9-jre-alpine
 
 # @TODO: https://github.com/GoogleCloudPlatform/microservices-demo/issues/2517
 # Download Stackdriver Profiler Java agent
