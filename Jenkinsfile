@@ -6,7 +6,6 @@ podTemplate(yaml: readTrusted('pod.yaml')) {
         stage('Build Docker Image') {
             container('buildkit') {
                 sh """
-                    ls -l && ls -l target/
                     buildctl --addr tcp://buildkitd.devops-tools.svc.cluster.local:1234\
                     --tlscacert /certs/ca.pem\
                     --tlscert /certs/cert.pem\
