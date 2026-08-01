@@ -16,7 +16,6 @@ podTemplate(yaml: readTrusted('pod.yaml')) {
                     --output type=image,name=134448505602.dkr.ecr.ap-south-1.amazonaws.com/msdemo-adservice,push=true
                 """
             }
-        stage
         }
     }
 }
