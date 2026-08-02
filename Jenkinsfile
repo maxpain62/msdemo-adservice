@@ -10,7 +10,7 @@ podTemplate(yaml: readTrusted('pod.yaml')) {
                 ./gradlew downloadRepos 
                 ./gradlew installDist
                 ls -l
-                ls -l ./build/install/adservice/bin
+                ls -l ./build/install
                 '''
             }
         }
