@@ -6,6 +6,7 @@ podTemplate(yaml: readTrusted('pod.yaml')) {
         stage('build') {
             container('gradle') {
                 sh '''
+                chmod +x gradlew
                 ./gradlew downloadRepos 
                 ./gradlew installDist
                 ls -l
