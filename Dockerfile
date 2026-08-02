@@ -24,3 +24,8 @@
 #
 #EXPOSE 9555
 #ENTRYPOINT ["/app/build/install/hipstershop/bin/AdService"]
+FROM eclipse-temurin:25.0.3_9-jre-alpine
+WORKDIR /app
+COPY build/install/hipstershop/bin/AdService .
+EXPOSE 9555
+ENTRYPOINT ["/app/AdService"]
