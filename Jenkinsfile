@@ -9,6 +9,7 @@ podTemplate(yaml: readTrusted('pod.yaml')) {
                 chmod +x gradlew
                 ./gradlew downloadRepos 
                 ./gradlew installDist
+                pwd
                 ls -l
                 ls -l ./build/install/hipstershop/bin/
                 '''
