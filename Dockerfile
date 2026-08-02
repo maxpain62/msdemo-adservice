@@ -27,6 +27,5 @@
 FROM eclipse-temurin:25.0.3_9-jre-alpine
 WORKDIR /app
 COPY ./build ./build/
-RUN ls -la
 EXPOSE 9555
 ENTRYPOINT ["/app/build/install/hipstershop/bin/AdService"]
