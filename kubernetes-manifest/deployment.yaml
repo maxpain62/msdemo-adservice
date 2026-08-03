@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msdemo-adservice-deployment
+  labels:
+    app: msdemo-adservice
+    environment: dev
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: msdemo-adservice
+  template:
+    metadata:
+      labels:
+        app: msdemo-adservice
+        environment: dev
+        tier: backend
+    spec:
+      containers:
+        - image: 134448505602.dkr.ecr.ap-south-1.amazonaws.com/msdemo-adservice:latest
+          name: msdemo-adservice-container
+          env:
+            - name: PORT
+              value: "9555"
+          ports:
+            - containerPort: 9555
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 9555
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9555
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+          resources:
+            requests:
+              memory: "180Mi"
+              cpu: "200m"
+            limits:
+              memory: "300Mi"
+              cpu: "300m"
