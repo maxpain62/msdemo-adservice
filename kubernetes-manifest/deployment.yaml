@@ -28,15 +28,13 @@ spec:
             - containerPort: 9555
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /
+            grpc:
               port: 9555
             initialDelaySeconds: 30
             periodSeconds: 10
             failureThreshold: 3
           readinessProbe:
-            httpGet:
-              path: /
+            grpc:
               port: 9555
             initialDelaySeconds: 30
             periodSeconds: 10
